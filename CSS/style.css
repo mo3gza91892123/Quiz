@@ -22,7 +22,8 @@
     display: none;
 }
 
-#quizAns label {
+#quizAns label,#quizAns a {
+    text-decoration: none;
     background: #fafafa;
     border: 1px solid #eee;
     border-radius: 10px;
@@ -32,12 +33,14 @@
     text-align: center;
 }
 
-#quizAns label.correct {
+#quizAns label.correct,#quizAns a.correct {
+    text-decoration: none;
     background: #d8ffc4;
     border: 1px solid #60a03f;
 }
 
-#quizAns label.wrong {
+#quizAns label.wrong,#quizAns a.wrong {
+    text-decoration: none;
     background: #ffe8e8;
     border: 1px solid #c78181;
 }
