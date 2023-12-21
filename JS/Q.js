@@ -21,11 +21,11 @@ const quiz ={
             a:"تنقسم المشروع بناءا علي اقسامه و مكوناته المنطقيه ذات العلاقه الوظيفيه"
         },
         {
-            q:"عرف الشرفات ) Tiers)",
+            q:"عرف الشرفات (Tiers)",
             a:"لها علاقه بالوجود الفيزيائي سواء وجدت علي حساب او خوادم"
         },
         {
-            q:"ال http هو",
+            q:"ما هوا http",
             a:"بروتوكول نقل نص التشعيبي "
         },
         {
@@ -49,7 +49,7 @@ const quiz ={
             a:"تبدوا كما لو كانت برامج مفيدة لكن في الحقيقة هي  برامج تحتوي علي الفيروسات"
         },
         {
-            q:"تعٌرف الشبكات",
+            q:"تعريف الشبكات",
             a:" هي مجموعة من أجهزة الحاسب المتصلة ببعضها  البعض بواسطة نظم ادارة شبكات و بروتوكوالت و مكونات مادية و  تتشارك الموارد و تحقق الاتصالات"
         },
         {
@@ -122,7 +122,12 @@ const quiz ={
         },
         {
             q:"طبقات النظام القياسي O",
-            a:") Application ( التطبيقات,) Presentation (التقديم,) Session ( الجلسه,النقل)Session(),الشبكه()Network,ربطالبيانات)Data links(,)الفيزيائيه(Physical)"
+            a:`(Application ( التطبيقات)
+            Presentation (التقديم)<br>
+            Session ( الجلسه,النقل)<br>
+            الشبكه(Network)<br>
+            (ربطالبيانات)Data links<br>
+            (الفيزيائيه)(Physical)`
         },
         {
             q:"هي نوع البيانات في طبقة ربط البيانات",
@@ -230,11 +235,11 @@ const quiz ={
         },
         {
             q:"تبدء صفحة ال HTML",
-            a:"<html>"
+            a:"<َhtml>"
         },
         {
             q:"تنتهي صفحة ال HTML",
-            a:"<html/>"
+            a:"<َhtml/>"
         },
         {
             q:"من الرموز المحجوزة في ال HTML",
@@ -274,10 +279,27 @@ const quiz ={
         },
 ],
 }
+let counter = 0;
 document.getElementById("quizAns").innerHTML="";
 quiz.data.forEach(element => {
     document.getElementById("quizAns").innerHTML+=`
-    <label style="background-color:#1D77C3" for="quizo0">السؤال<br> ${element.q}</label>
-    <label style="background-color:#268BED" for="quizo0">الاجابة<br> ${element.a}</label>
+    <label style="background-color:#1D77C3" id="q-${counter}" for="quizo0">السؤال<br> ${element.q}</label>
+    <label style="background-color:#268BED" id="a-${counter}" for="quizo0">الاجابة<br> ${element.a}</label>
     `;
 });
+let search = document.getElementById("search");
+search.addEventListener("keyup",function(){
+    if(search.value.length > 1){
+        document.getElementById("quizAns").innerHTML="";
+        quiz.data.forEach(element => {
+            if (element.q.search(search.value) >= 0|| element.a.search(search.value) >= 0) {   
+                document.getElementById("quizAns").innerHTML+=`
+                <label style="background-color:#1D77C3" for="quizo0">السؤال<br> ${element.q}</label>
+                <label style="background-color:#268BED" for="quizo0">الاجابة<br> ${element.a}</label>
+                `;
+            }
+        });
+    }else{
+        document.getElementById("quizAns").innerHTML="";
+    }
+})
