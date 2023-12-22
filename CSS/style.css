@@ -36,7 +36,7 @@ body {
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 10px;
-    transition: bottom 10s;
+    margin-bottom: 25px;
 }
 
 #quizAns input[type=radio] {
