@@ -5,11 +5,13 @@ async function Api(){
     return quation;
 }
 function getall() {
+    let conter =0;
     document.getElementById("quizAns").innerHTML="";
     Api().then(quation => quation.data.forEach(element => {
+        conter +=1;
         document.getElementById("quizAns").innerHTML+=`
-        <label style="background-color:#1D77C3" for="quizo0">السؤال<br> ${element.q}</label>
-        <label style="background-color:#268BED" for="quizo0">الاجابة<br> ${element.a}</label>
+        <label style="background-color:#1D77C3" id="q-${conter}" for="quizo0">السؤال<br> ${element.q}</label>
+        <label style="background-color:#268BED" id="a-${conter}" for="quizo0">الاجابة<br> ${element.a}</label>
     `;
     }))
 }
@@ -32,4 +34,5 @@ search.addEventListener("keyup",function(){
         document.getElementById("quizAns").innerHTML="";
     }
 })
+// document.getElementById("q-1").onclick = document.getElementById("q-1").style.display = "none";
 getall();

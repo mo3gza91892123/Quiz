@@ -264,7 +264,6 @@ const quiz ={
     }
     
     let correct = option.dataset.idx == quiz.data[quiz.now].a;
-    document.getElementById("sqoure").value = quiz.now+1;
     if (correct) {
     quiz.score++;
     option.classList.add("correct");
@@ -280,5 +279,4 @@ const quiz ={
         quiz.draw();
         } 
 }
-document.getElementById("sqoure").max = quiz.data.length;
-window.addEventListener("load", quiz.init);
+        window.addEventListener("load", quiz.init);
