@@ -10,9 +10,25 @@ function getall() {
     Api().then(quation => quation.data.forEach(element => {
         conter +=1;
         document.getElementById("quizAns").innerHTML+=`
-        <label style="background-color:#1D77C3" id="q-${conter}" for="quizo0">السؤال<br> ${element.q}</label>
-        <label style="background-color:#268BED" id="o-${conter}" for="quizo0">الاختيارات<br> ${element.o}</label>
-        <label style="background-color:#268BED" id="a-${conter}" for="quizo0">الاجابة<br> ${element.o[element.a]}</label>
+        <ul class="list-group">
+            <li class="list-group-item active">السؤال ${element.q}</li>
+            <li class="list-group-item">الاختيارات</li>
+            <div class="row">
+                <div class="col-md">
+                    <li class="list-group-item">${element.o[0]}</li>
+                </div>
+                <div class="col">
+                    <li class="list-group-item">${element.o[1]}</li>
+                </div>
+                <div class="col">
+                    <li class="list-group-item">${element.o[2]}</li>
+                </div>
+                <div class="col">
+                    <li class="list-group-item">${element.o[3]}</li>
+                </div>
+                </div>
+                <li class="list-group-item active">الاجابة ${element.o[element.a]}</li>
+        </ul>
     `;
     }))
 }
