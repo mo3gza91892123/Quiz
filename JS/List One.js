@@ -12,22 +12,12 @@ function getall() {
         document.getElementById("quizAns").innerHTML+=`
         <ul class="list-group">
             <li class="list-group-item active">السؤال ${element.q}</li>
-            <li class="list-group-item">الاختيارات</li>
             <div class="row">
                 <div class="col-md">
-                    <li class="list-group-item">${element.o[0]}</li>
+                    <li class="list-group-item">${element.o[0]} ${element.o[1]} ${element.o[2]} ${element.o[3]}</li>
                 </div>
-                <div class="col">
-                    <li class="list-group-item">${element.o[1]}</li>
-                </div>
-                <div class="col">
-                    <li class="list-group-item">${element.o[2]}</li>
-                </div>
-                <div class="col">
-                    <li class="list-group-item">${element.o[3]}</li>
-                </div>
-                </div>
-                <li class="list-group-item active">الاجابة ${element.o[element.a]}</li>
+            </div>
+            <li class="list-group-item active">الاجابة (${element.o[element.a]})</li>
         </ul>
     `;
     }))
