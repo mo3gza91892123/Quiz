@@ -34,9 +34,15 @@ search.addEventListener("keyup",function(){
             if (element.q.search(search.value) >= 0|| element.o[element.a].search(search.value) >= 0) {   
                 c ++;
                 document.getElementById("quizAns").innerHTML+=`
-                <label style="background-color:#1D77C3" for="quizo0">السؤال<br> ${element.q}</label>
-                <label style="background-color:#268BED" for="quizo0">الاختيارات<br> ${element.o}</label>
-                <label style="background-color:#268BED" for="quizo0">الاجابة<br> ${element.o[element.a]}</label>
+                <ul class="list-group">
+                    <li class="list-group-item active">السؤال ${element.q}</li>
+                    <div class="row">
+                        <div class="col-md">
+                            <li class="list-group-item">${element.o[0]} ${element.o[1]} ${element.o[2]} ${element.o[3]}</li>
+                        </div>
+                    </div>
+                    <li class="list-group-item active">الاجابة (${element.o[element.a]})</li>
+                </ul>
                 `;
             }
             document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
