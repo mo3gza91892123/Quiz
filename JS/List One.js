@@ -14,7 +14,7 @@ function getall() {
             <li class="list-group-item active">السؤال ${element.q}</li>
             <div class="row">
                 <div class="col-md">
-                    <li class="list-group-item">${element.o[0]} ${element.o[1]} ${element.o[2]} ${element.o[3]}</li>
+                    <li class="list-group-item">${element.o[0]} - ${element.o[1]} - ${element.o[2]} - ${element.o[3]}</li>
                 </div>
             </div>
             <li class="list-group-item active">الاجابة (${element.o[element.a]})</li>
@@ -38,7 +38,7 @@ search.addEventListener("keyup",function(){
                     <li class="list-group-item active">السؤال ${element.q}</li>
                     <div class="row">
                         <div class="col-md">
-                            <li class="list-group-item">${element.o[0]} ${element.o[1]} ${element.o[2]} ${element.o[3]}</li>
+                            <li class="list-group-item">${element.o[0]} - ${element.o[1]} - ${element.o[2]} - ${element.o[3]}</li>
                         </div>
                     </div>
                     <li class="list-group-item active">الاجابة (${element.o[element.a]})</li>
