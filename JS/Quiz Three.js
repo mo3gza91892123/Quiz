@@ -3,7 +3,7 @@ let AAnsers =[];
 let UAnsers =[];
 let TF = false;
 async function Api() {
-    const datares = await fetch("./JS/json/B.json");
+    const datares = await fetch("./JS/json/D.json");
     const quation = await datares.json();
     return quation;
 }
