@@ -1,6 +1,6 @@
 let search = document.getElementById("search");
 async function Api(){
-    const datares = await fetch("./JS/json/D.json");
+    const datares = await fetch("./JS/json/A.json");
     const quation = await datares.json();
     return quation;
 }
@@ -11,13 +11,13 @@ function getall() {
         conter +=1;
         document.getElementById("quizAns").innerHTML+=`
         <ul class="list-group">
-            <li class="list-group-item active">السؤال ${element.q}</li>
+            <li class="list-group-item active">السؤال : ${element.q}</li>
             <div class="row">
                 <div class="col-md">
-                    <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o[0] + " - " + element.o[1]} </li>
+                    <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
                 </div>
             </div>
-            <li class="list-group-item active">الاجابة (${element.o[element.a]})</li>
+            <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
         </ul>
     `;
     }))
@@ -35,13 +35,13 @@ search.addEventListener("keyup",function(){
                 c ++;
                 document.getElementById("quizAns").innerHTML+=`
                 <ul class="list-group">
-                    <li class="list-group-item active">السؤال ${element.q}</li>
+                    <li class="list-group-item active">السؤال : ${element.q}</li>
                     <div class="row">
                         <div class="col-md">
-                            <li class="list-group-item">${element.o[0]} - ${element.o[1]} - ${element.o[2]} - ${element.o[3]}</li>
+                    <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o === 1 ? element.o[0]: element.o[0] + " - " + element.o[1]} </li>
                         </div>
                     </div>
-                    <li class="list-group-item active">الاجابة (${element.o[element.a]})</li>
+                    <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
                 </ul>
                 `;
             }

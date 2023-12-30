@@ -3,17 +3,18 @@ let AAnsers =[];
 let UAnsers =[];
 let TF = false;
 async function Api() {
-    const datares = await fetch("./JS/json/D.json");
+    const datares = await fetch("./JS/json/A.json");
     const quation = await datares.json();
-    return quation;
+    const data =  await quation.data.slice(0,42);
+    return data;
 }
 function randomnum(data,c) {
-    let randbum = Math.floor(Math.random() * data.data.length)
+    let randbum = Math.floor(Math.random() * data.length)
     let array = [randbum];
-    let q = [data.data[randbum]];
+    let q = [data[randbum]];
     for (let i = 0; i < c-1; i++) {
         for (let j = 0; j < array.length; ) {
-            randbum = Math.floor(Math.random() * data.data.length)
+            randbum = Math.floor(Math.random() * data.length)
             if (randbum === array[j]) {
                 j = 0;
             }else{
@@ -21,7 +22,7 @@ function randomnum(data,c) {
             }
         }
         array.push(randbum);
-        q.push(data.data[randbum]);
+        q.push(data[randbum]);
     }
     return q;
 }
@@ -135,4 +136,3 @@ function reset(a){
     draw(a);
     
 }
-document.getElementById("canvas").style.display = "none";

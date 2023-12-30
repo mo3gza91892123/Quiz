@@ -11,13 +11,13 @@ function getall() {
         conter +=1;
         document.getElementById("quizAns").innerHTML+=`
         <ul class="list-group">
-            <li class="list-group-item active">السؤال ${element.q}</li>
+            <li class="list-group-item active">السؤال : ${element.q}</li>
             <div class="row">
                 <div class="col-md">
                     <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o[0] + " - " + element.o[1]} </li>
                 </div>
             </div>
-            <li class="list-group-item active">الاجابة (${element.o[element.a]})</li>
+            <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
         </ul>
     `;
     }))
@@ -31,18 +31,18 @@ search.addEventListener("keyup",function(){
         document.getElementById("quizAns").innerHTML="";
         let c = 0;
         Api().then(quation => quation.data.forEach(element => {
-            if (element.q.search(search.value) >= 0|| element.o[element.a].search(search.value) >= 0) {   
+            if (element.q.search(search.value) >= 0 || element.o[element.a].search(search.value) >= 0 ) {   
                 c ++;
                 document.getElementById("quizAns").innerHTML+=`
                 <ul class="list-group">
-                    <li class="list-group-item active">السؤال ${element.q}</li>
+                    <li class="list-group-item active">السؤال : ${element.q}</li>
                     <div class="row">
                         <div class="col-md">
-                            <li class="list-group-item">${element.o[0]} - ${element.o[1]} - ${element.o[2]} - ${element.o[3]}</li>
+                            <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o[0] + " - " + element.o[1]} </li>
                         </div>
                     </div>
-                    <li class="list-group-item active">الاجابة (${element.o[element.a]})</li>
-                </ul>
+                    <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
+                    </ul>
                 `;
             }
             document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
