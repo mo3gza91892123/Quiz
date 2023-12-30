@@ -25,6 +25,7 @@ body {
 }
 
 #quizQn {
+    direction: rtl;
     padding: 20px;
     background: #4c93ba;
     color: #fff;

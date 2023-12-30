@@ -25,7 +25,7 @@ function randomnum(data,c) {
     }
     return q;
 }
-document.getElementById("sqoure").value = 0.000001;
+document.getElementById("sqoure").style.width = 0;
 Api().then(q => init (randomnum(q,30)));
 let now = 0; // current question
 let score = 0; // current score
@@ -84,18 +84,18 @@ function select(option,data){
         if (now < a.length) 
         {
             draw(a);
-            document.getElementById("sqoure").max = a.length;
-            document.getElementById("sqoure").value = now;
+            document.getElementById("sqoure").style.width = (now/a.length * 100) +"%";
         }
         else {
-            document.getElementById("sqoure").style.display = "none"
+            document.getElementById("exit").style.display = "none"
             if ((a.length / 2) <= score) {
-                hQn.innerHTML="(: "+`لقد حصلت علي ${score} من ${a.length}`;
+                start();
+                hQn.innerHTML="&#128516; "+`لقد حصلت علي ${score} من ${a.length}`;
                 // document.getElementById("canvas").style.display = "block";
                 // initConfetti();
                 // render();
             }else{
-                hQn.innerHTML="(: "+`لقد حصلت علي ${score} من ${a.length}`;
+                hQn.innerHTML="☹️ "+`لقد حصلت علي ${score} من ${a.length}`;
             }
             hAns.innerHTML="" ;
             hWrap.innerHTML +=`
