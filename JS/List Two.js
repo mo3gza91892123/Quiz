@@ -1,6 +1,6 @@
 let search = document.getElementById("search");
 async function Api(){
-    const datares = await fetch("./JS/json/B.json");
+    const datares = await fetch("./JS/json/A.json");
     const quation = await datares.json();
     return quation;
 }

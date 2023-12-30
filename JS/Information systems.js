@@ -34,5 +34,4 @@ search.addEventListener("keyup",function(){
         document.getElementById("quizAns").innerHTML="";
     }
 })
-// document.getElementById("q-1").onclick = document.getElementById("q-1").style.display = "none";
 getall();
