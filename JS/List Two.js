@@ -10,7 +10,7 @@ function getall() {
     Api().then(quation => quation.data.forEach(element => {
         conter +=1;
         document.getElementById("quizAns").innerHTML+=`
-        <ul class="list-group">
+        <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
             <li class="list-group-item active">السؤال : ${element.q}</li>
             <div class="row">
                 <div class="col-md">
@@ -34,7 +34,7 @@ search.addEventListener("keyup",function(){
             if (element.q.search(search.value) >= 0|| element.o[element.a].search(search.value) >= 0) {   
                 c ++;
                 document.getElementById("quizAns").innerHTML+=`
-                <ul class="list-group">
+                    <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
                     <li class="list-group-item active">السؤال : ${element.q}</li>
                     <div class="row">
                         <div class="col-md">

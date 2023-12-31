@@ -23,7 +23,9 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
-
+ul{
+    transition: 1s;
+}
 #quizQn {
     direction: rtl;
     padding: 20px;
