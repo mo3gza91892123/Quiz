@@ -8,22 +8,14 @@ async function Api() {
     return quation;
 }
 function randomnum(data,c) {
-    let randbum = Math.floor(Math.random() * data.data.length)
-    let array = [randbum];
-    let q = [data.data[randbum]];
-    for (let i = 0; i < c-1; i++) {
-        for (let j = 0; j < array.length; ) {
-            randbum = Math.floor(Math.random() * data.data.length)
-            if (randbum === array[j]) {
-                j = 0;
-            }else{
-                j++;
-            }
+    const array = [];
+    while (array.length < c) {
+        const randbum = Math.floor(Math.random() * data.data.length)
+        if (array.indexOf(randbum) === -1) {
+            array.push(data.data[randbum]);
         }
-        array.push(randbum);
-        q.push(data.data[randbum]);
     }
-    return q;
+    return array;
 }
 document.getElementById("sqoure").style.width = 0;
 Api().then(q => init (randomnum(q,30)));
