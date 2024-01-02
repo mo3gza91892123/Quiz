@@ -10,8 +10,8 @@ function getall() {
     Api().then(quation => quation.data.forEach(element => {
         conter +=1;
         document.getElementById("quizAns").innerHTML+=`
-        <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
-            <li class="list-group-item active">السؤال : ${element.q}</li>
+        <ul class="list-group" id='id-${conter}'onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5': this.style.opacity = '1';localStorage.setItem('clicker','${conter}')" dir="rtl">
+            <li class="list-group-item active" id="id-${conter}">السؤال : ${element.q}</li>
             <div class="row">
                 <div class="col-md">
                     <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
@@ -52,5 +52,7 @@ search.addEventListener("keyup",function(){
         document.getElementById("quizAns").innerHTML="";
     }
 })
+document.querySelector(".counter")
 // document.getElementById("q-1").onclick = document.getElementById("q-1").style.display = "none";
 getall();
+document.getElementById("get").href = "#id-" + localStorage.getItem('clicker');

@@ -10,7 +10,7 @@ function getall() {
     Api().then(quation => quation.data.forEach(element => {
         conter +=1;
         document.getElementById("quizAns").innerHTML+=`
-        <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
+        <ul class="list-group" id='id-${conter}'onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5': this.style.opacity = '1';localStorage.setItem('clicker','${conter}')" dir="rtl">
             <li class="list-group-item active">السؤال : ${element.q}</li>
             <div class="row">
                 <div class="col-md">

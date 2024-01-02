@@ -2,18 +2,17 @@
     font-family: arial, sans-serif;
     box-sizing: border-box;
 }
-
 body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     min-height: 100vh;
     max-width: 100%;
     text-align: center;
     background: rgb(238, 174, 202);
     background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
-
 .widget-wrap {
     width: 600px;
     padding: 30px;
@@ -23,7 +22,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
-ul{
+#quizAns ul{
     transition: 1s;
 }
 #quizQn {
@@ -34,7 +33,6 @@ ul{
     font-size: 24px;
     border-radius: 10px;
 }
-
 #quizAns {
     margin: 10px 0;
     display: grid;
