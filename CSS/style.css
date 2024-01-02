@@ -6,7 +6,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     min-height: 100vh;
     max-width: 100%;
     text-align: center;
@@ -22,7 +21,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
-#quizAns ul{
+ul{
     transition: 1s;
 }
 #quizQn {
