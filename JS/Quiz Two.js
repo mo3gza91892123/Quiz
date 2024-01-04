@@ -18,7 +18,6 @@ function randomnum(data,c) {
             array.push(data[randbum]);
         }
     }
-    console.log(number);
     return array;
 }
 document.getElementById("sqoure").style.width = 0;
