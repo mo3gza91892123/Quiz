@@ -11,10 +11,10 @@ function randomnum(data,c) {
     const array = [];
     const number = [];
     while (array.length < c) {
-        const randbum = Math.floor(Math.random() * data.length)
+        const randbum = Math.floor(Math.random() * data.data.length)
         if (number.indexOf(randbum) === -1) {
             number.push(randbum);
-            array.push(data[randbum]);
+            array.push(data.data[randbum]);
         }
     }
     return array;
