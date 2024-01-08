@@ -27,7 +27,7 @@ search.addEventListener("keyup",function(){
         document.querySelector(".logo").innerHTML="الاسالة";
         getall();
     }
-    else if(search.value.length > 2){
+    else if(search.value.length > 1){
         document.getElementById("quizAns").innerHTML="";
         let c = 0;
         Api().then(quation => quation.data.forEach(element => {
@@ -47,9 +47,6 @@ search.addEventListener("keyup",function(){
             }
             document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
             }));
-    }
-    else{
-        document.getElementById("quizAns").innerHTML="";
     }
 })
 // document.getElementById("q-1").onclick = document.getElementById("q-1").style.display = "none";
