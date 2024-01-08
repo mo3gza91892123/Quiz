@@ -27,7 +27,7 @@ search.addEventListener("keyup",function(){
         document.querySelector(".logo").innerHTML="الاسالة";
         getall();
     }
-    else if(search.value.length > 0){
+    else if(search.value.length > 2){
         document.getElementById("quizAns").innerHTML="";
         let c = 0;
         Api().then(quation => quation.data.forEach(element => {
