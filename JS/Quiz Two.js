@@ -5,15 +5,15 @@ async function Api() {
     const datares = await fetch("./JS/json/D.json");
     const quation = await datares.json();
     const data =  [];
-    quation.data.forEach(element => {
+    await quation.data.forEach(element => {
         if (element.o.length > 1) {
             data.push(element)
         }
     });
-    document.getElementById("logo").innerHTML += " ("+ data.length +") سؤال";
     return data;
 }
 function randomnum(data,c) {
+    document.getElementById("logo").innerHTML += " ("+ data.length +") سؤال";
     const array = [];
     const number = [];
     while (array.length < c) {
