@@ -13,7 +13,6 @@ async function Api() {
     return data;
 }
 function randomnum(data,c) {
-    document.getElementById("logo").innerHTML += " ("+ data.length +") سؤال";
     const array = [];
     const number = [];
     while (array.length < c) {
