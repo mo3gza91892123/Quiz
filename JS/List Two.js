@@ -54,24 +54,6 @@ searchclick.addEventListener("click",function(){
                     </ul>
                 `;
                 }
-            }else{
-                if (element.q.search(search.value) >= 0 || element.a.search(search.value) >= 0) {   
-                    c ++;
-                    document.getElementById("quizAns").innerHTML+=`
-                    <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
-                        <li class="list-group-item active text-success">السؤال : ${element.q}</li>
-                        <div class="row">
-                            <div class="col-md">
-                                <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
-                            </div>
-                        </div>
-                        <li class="list-group-item active text-success">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
-                    </ul>
-                `;
-                }
             }
-            document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
-            }));
-    }
 })
 getall();
