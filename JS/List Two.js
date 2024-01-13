@@ -1,6 +1,7 @@
 const Trues = document.getElementById("Trues");
 const Falses = document.getElementById("Falses");
 const Choos = document.getElementById("Choos");
+const abc = document.getElementById("abc");
 
 let conter =0;
 let search = document.getElementById("search");
@@ -28,6 +29,26 @@ function getall() {
     `;
     }))
 }
+abc.addEventListener("click",function(){
+    document.getElementById("quizAns").innerHTML="";
+        let c = 0;
+        const dat = array.then(a=>a.data.sort((a,b)=>{if (a.q < b.q){return -1}}));
+        dat.then(quation => quation.forEach(element => {
+            c ++;
+            document.getElementById("quizAns").innerHTML+=`
+            <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
+                <li class="list-group-item active">السؤال : ${element.q}</li>
+                <div class="row">
+                    <div class="col-md">
+                        <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
+                    </div>
+                </div>
+                <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
+            </ul>
+        `;
+            document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
+            }));
+});
 Choos.addEventListener("click",function(){
     document.getElementById("quizAns").innerHTML="";
         let c = 0;
