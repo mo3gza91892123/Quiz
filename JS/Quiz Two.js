@@ -1,137 +1,131 @@
-let QAnsers =[];
-let AAnsers =[];
-let UAnsers =[];
-async function Api() {
+const Trues = document.getElementById("Trues");
+const Falses = document.getElementById("Falses");
+const Choos = document.getElementById("Choos");
+
+let conter =0;
+let search = document.getElementById("search");
+let searchclick = document.getElementById("searchclick");
+async function Api(){
     const datares = await fetch("./JS/json/D.json");
     const quation = await datares.json();
-    const data =  [];
-    await quation.data.forEach(element => {
-        if (element.o.length > 1) {
-            data.push(element)
-        }
-    });
-    return data;
+    return quation;
 }
-function randomnum(data,c) {
-        document.getElementById("logo").innerHTML += " ("+ data.length +") سؤال";
-    const array = [];
-    const number = [];
-    while (array.length < c) {
-        const randbum = Math.floor(Math.random() * data.length)
-        if (number.indexOf(randbum) === -1) {
-            number.push(randbum);
-            array.push(data[randbum]);
-        }
-    }
-    return array;
+const array = Api();
+function getall() {
+    document.getElementById("quizAns").innerHTML="";
+    array.then(quation => quation.data.forEach(element => {
+        conter +=1;
+        document.getElementById("quizAns").innerHTML+=`
+        <ul class="list-group" id='id-${conter}'onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5': this.style.opacity = '1';localStorage.setItem('clicker','${conter}')">
+            <li class="list-group-item active">السؤال : ${element.q}</li>
+            <div class="row">
+                <div class="col-md">
+                    <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
+                </div>
+            </div>
+            <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
+        </ul>
+    `;
+    }))
 }
-document.getElementById("sqoure").style.width = 0;
-Api().then(q => init (randomnum(q,30)));
-let now = 0; // current question
-let score = 0; // current score
-
-let hWrap = document.getElementById("quizWrap");
-let hQn = document.createElement("div");
-let hAns = document.createElement("div");
-function init (data){
-    hQn.id = "quizQn";
-    hWrap.appendChild(hQn);
-    
-    hAns.id = "quizAns";
-    hWrap.appendChild(hAns);
-    draw(data);
-}
-
-function draw(data){
-    hQn.innerHTML = data[now].q;
-    
-    hAns.innerHTML = "";
-    for (let i in data[now].o) {
-        let radio = document.createElement("input");
-        radio.type = "radio";
-        radio.name = "quiz";
-        radio.id = "quizo" + i;
-        hAns.appendChild(radio);
-        let label = document.createElement("label");
-        label.innerHTML = data[now].o[i];
-        label.setAttribute("for", "quizo" + i);
-        label.dataset.idx = i;
-        label.addEventListener("click", () => {select(label,data);});
-        hAns.appendChild(label);
-    }
-}
-function select(option,data){
-    let all = hAns.getElementsByTagName("label");
-    // let data = data;
-    for (let label of all) {
-        label.removeEventListener("click", select);
-    }
-    
-    let correct = option.dataset.idx == data[now].a;
-    QAnsers.push(data[now].q);
-    AAnsers.push(data[now].o[data[now].a]);
-    UAnsers.push(data[now].o[option.dataset.idx]);
-    document.getElementById("sqoure").value = now+1;
-    if (correct) {
-        score++;
-        option.classList.add("correct");
-    } else {
-        option.classList.add("wrong");
-    }
-    now++;
-    let a = data;
-    setTimeout(()=>{
-        if (now < a.length) 
-        {
-            draw(a);
-            document.getElementById("sqoure").style.width = (now/a.length * 100) +"%";
-        }
-        else {
-            document.getElementById("exit").style.display = "none"
-            if ((a.length / 2) <= score) {
-                start();
-                hQn.innerHTML="&#128516; "+`لقد حصلت علي ${score} من ${a.length}`;
-                // document.getElementById("canvas").style.display = "block";
-                // initConfetti();
-                // render();
-            }else{
-                hQn.innerHTML="☹️ "+`لقد حصلت علي ${score} من ${a.length}`;
+Choos.addEventListener("click",function(){
+    document.getElementById("quizAns").innerHTML="";
+        let c = 0;
+        array.then(quation => quation.data.forEach(element => {
+            if (element.o.length > 1) {
+                if (element.o.length == 4) {   
+                    c ++;
+                    document.getElementById("quizAns").innerHTML+=`
+                    <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
+                        <li class="list-group-item active">السؤال : ${element.q}</li>
+                        <div class="row">
+                            <div class="col-md">
+                                <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
+                            </div>
+                        </div>
+                        <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
+                    </ul>
+                `;
+                }
             }
-            hAns.innerHTML="" ;
-            hWrap.innerHTML +=`
-            <table class="table table-bordered table-dark" dir="rtl">
-                <thead>
-                    <tr>
-                    <th scope="col">السؤال</th>
-                    <th scope="col text-success">الاجابة الصحيحة</th>
-                    <th scope="col">الاجابة المختارة</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-            `;
-            for (let i = 0; i < QAnsers.length; i++) {
-                document.querySelector("tbody").innerHTML += `
-                <tr>
-                    <th scope="row">${QAnsers[i]}</th>
-                    <td><p class="text-success">${AAnsers[i]}</p></td>
-                    <td>${AAnsers[i] === UAnsers[i] ?"<p class='text-success'>" + UAnsers[i] + "</p>":"<p class='text-danger'>" + UAnsers[i] + "</p>"}</td>
-                </tr>`
+            document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
+            }));
+});
+Trues.addEventListener("click",function(){
+    document.getElementById("quizAns").innerHTML="";
+        let c = 0;
+        array.then(quation => quation.data.forEach(element => {
+            if (element.o.length > 1) {
+                if (element.o.length == 2 && element.a == 1) {   
+                    c ++;
+                    document.getElementById("quizAns").innerHTML+=`
+                    <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
+                        <li class="list-group-item active">السؤال : ${element.q}</li>
+                        <div class="row">
+                            <div class="col-md">
+                                <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
+                            </div>
+                        </div>
+                        <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
+                    </ul>
+                `;
+                }
             }
-            document.getElementById("quizAns").innerHTML += `<a href="index.html">الرئسية</a>`
-            document.getElementById("quizAns").innerHTML += `<a href="javascript:location.reload();">اعادة الامتحان</a>`
-            
-        }
-        
-    }, 500);
-    
-    return a;
-}
+            document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
+            }));
+});
 
-function reset(a){
-    now = 0;
-    score = 0;
-    draw(a);
-    
-}
+Falses.addEventListener("click",function(){
+    document.getElementById("quizAns").innerHTML="";
+        let c = 0;
+        array.then(quation => quation.data.forEach(element => {
+            if (element.o.length > 1) {
+                if (element.o.length == 2 && element.a == 0) {
+                    c ++;
+                    document.getElementById("quizAns").innerHTML+=`
+                    <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
+                        <li class="list-group-item active">السؤال : ${element.q}</li>
+                        <div class="row">
+                            <div class="col-md">
+                                <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
+                            </div>
+                        </div>
+                        <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
+                    </ul>
+                `;
+                }
+            }
+            document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
+            }));
+});
+searchclick.addEventListener("click",function(){
+    if(search.value.length == 0){
+        document.querySelector(".logo").innerHTML="الاسالة";
+        getall();
+    }
+    else if(search.value.length > 0){
+        document.getElementById("quizAns").innerHTML="";
+        let c = 0;
+        array.then(quation => quation.data.forEach(element => {
+            if (element.o.length > 1) {
+                if (element.q.search(search.value) >= 0 || element.o[element.a].search(search.value) >= 0) {   
+                    c ++;
+                    document.getElementById("quizAns").innerHTML+=`
+                    <ul class="list-group" onclick="this.style.opacity != '0.5' ? this.style.opacity = '0.5' : this.style.opacity = '1'">
+                        <li class="list-group-item active">السؤال : ${element.q}</li>
+                        <div class="row">
+                            <div class="col-md">
+                                <li class="list-group-item"> ${element.o.length > 2 ? element.o[0] + " - " + element.o[1] +" - "+ element.o[2] +" - "+ element.o[3] : element.o.length === 1 ? '': element.o[0] + " - " + element.o[1]} </li>
+                            </div>
+                        </div>
+                        <li class="list-group-item active">الاجابة : (${element.o[element.a] !=undefined ?element.o[element.a]: element.a})</li>
+                    </ul>
+                `;
+                }
+            }
+            document.querySelector(".logo").innerHTML="يوجد " + c + " سؤال";
+            }));
+    }
+})
+// document.getElementById("q-1").onclick = document.getElementById("q-1").style.display = "none";
+getall();
